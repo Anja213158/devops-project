@@ -12,8 +12,6 @@
 
 6. Run `docker exec -it <nodeContainerID> sh` (replace <nodeContainerID> with the proper ID) to sh into the container
 
-7. Run `node dbSeeder.js` to seed the MongoDB database
-
-8. Type `exit` to leave the sh session
+7. Type `exit` to leave the sh session
 
 
