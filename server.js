@@ -41,6 +41,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 db.init(config.databaseConfig);
 
 app.use('/', routes);
+// lib/database.js
+
+const mongoose = require('mongoose');
+
+// Функција за иницијализација на MongoDB конекцијата
+const init = (mongoURI) => {
+  mongoose.connect(mongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => console.log('Successfully connected to MongoDB'))
+  .catch(err => console.log('MongoDB connection error:', err));
+};
+
+module.exports = { init };
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

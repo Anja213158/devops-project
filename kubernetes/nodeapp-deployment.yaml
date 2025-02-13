@@ -4,7 +4,7 @@ metadata:
   name: node-app
   namespace: devops-project
 spec:
-  replicas: 1
+  replicas: 1 
   selector:
     matchLabels:
       app: node-app
