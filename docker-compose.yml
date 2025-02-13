@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
 
   node:
@@ -10,7 +12,26 @@ services:
       - "3000:3000"
     depends_on: 
       - mongodb
-      
+    environment:
+      MONGO_URI: "mongodb://mongo_user:mongo_pass@mongodb:27017/mydatabase"
+
   mongodb:
     container_name: mongodb
     image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_DB}
+
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - private_network
+
+volumes:
+  mongo_data:
+
+networks:
+  private_network:
+    driver: bridge
